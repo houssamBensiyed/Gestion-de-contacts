@@ -22,3 +22,54 @@ void rechercherContact(Contact contacts[], int nbContacts);
 void modifierContact(Contact contacts[], int nbContacts);
 void supprimerContact(Contact contacts[], int *nbContacts);
 void viderBuffer();
+
+int main() {
+    Contact contacts[MAX_CONTACTS];
+    int nbContacts = 0;
+    int choix;
+    
+    printf("========================================\n");
+    printf("   SYSTEME DE GESTION DE CONTACTS\n");
+    printf("========================================\n\n");
+    
+    do {
+        afficherMenu();
+        printf("Votre choix : ");
+        scanf("%d", &choix);
+        viderBuffer();
+        
+        switch(choix) {
+            case 1:
+                ajouterContact(contacts, &nbContacts);
+                break;
+            case 2:
+                afficherTousContacts(contacts, nbContacts);
+                break;
+            case 3:
+                rechercherContact(contacts, nbContacts);
+                break;
+            case 4:
+                modifierContact(contacts, nbContacts);
+                break;
+            case 5:
+                supprimerContact(contacts, &nbContacts);
+                break;
+            case 6:
+                printf("\nMerci d'avoir utilisé notre gestionnaire de contacts!\n");
+                printf("Au revoir!\n");
+                break;
+            default:
+                printf("\n[ERREUR] Choix invalide! Veuillez réessayer.\n");
+        }
+        
+        if(choix != 6) {
+            printf("\n----------------------------------------\n");
+            printf("Appuyez sur Entrée pour continuer...");
+            getchar();
+        }
+        
+    } while(choix != 6);
+    
+    return 0;
+}
+
